@@ -70,7 +70,7 @@ int main(int argc, char **argv){
     return 0;
 }
 /* 
-./h1 hough_simple_1.pgm testone.pgm
-./h1 hough_simple_2.pgm testone.pgm
-./h1 hough_complex_1.pgm testone.pgm
+./h1 hough_simple_1.pgm outputh1.pgm
+./h1 hough_simple_2.pgm outputh1.pgm
+./h1 hough_complex_1.pgm outputh1.pgm
 */

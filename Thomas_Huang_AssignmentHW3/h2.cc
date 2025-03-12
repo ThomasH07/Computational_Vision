@@ -42,5 +42,5 @@ int main(int argc, char **argv){
     return 0;
 }
 /* 
-./h2 testone.pgm 50 testtwo.pgm
+./h2 outputh1.pgm 50 outputh2.pgm
 */ 

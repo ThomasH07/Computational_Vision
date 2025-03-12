@@ -30,6 +30,7 @@ int main(int argc, char **argv){
     // increment the array based on theta, 
     //find all local maximum sych that array(y,x) > T
     //output stuff
+
     Image one_image;
     Image* one_ptr = &one_image;
     ReadImage(input_filenm, one_ptr);
@@ -50,13 +51,15 @@ int main(int argc, char **argv){
     for (int y = 1; y < rows-1 ;y++){
         for (int x = 1; x < cols-1 ;x++){
             if(one_image.GetPixel(y,x) > 0){
-                //for(int h = 0; h < )
+                //for(int h = 0; h < 180;h++){}
+                //find delta rho
+
             }
         }
     }
     return 0;
 }
 /* 
-./h3 testtwo.pgm testthree.pgm textthree.txt
+./h3 outputh2.pgm outputh3.pgm output.txt
 
 */
