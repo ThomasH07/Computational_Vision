@@ -65,6 +65,6 @@ all:
 
 
 clean:
-	(rm -f *.o; rm p1; rm p2; rm p3; rm p4)
+	(rm -f *.o; rm p1; rm p2; rm p3; rm p4; rm outputp1.pgm; rm outputp2.pgm; rm outputp3.pgm; rm output.txt)
 
 (:

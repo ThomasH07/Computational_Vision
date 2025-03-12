@@ -32,7 +32,6 @@ int main(int argc, char **argv){
   //one_image.SetNumberGrayLevels(255); done in ReadImage
   int rows = one_image.num_rows();
   int columns = one_image.num_columns();
-  int xbar=0,ybar = 0;
   
   for (int i = 0; i < rows; ++i){ // # of rows
     for (int j = 0; j < columns; ++j){ //# of cols
@@ -46,4 +45,5 @@ int main(int argc, char **argv){
   //image to pgm file
   WriteImage(output_file, one_image);
 }
-// ./p1 two_objects.pgm 127 outputp1.pgm
+// ./p1 images/two_objects.pgm 127 images/outputp1.pgm
+// ./p1 many_objects_1.pgm 123 outputp1.pgm
