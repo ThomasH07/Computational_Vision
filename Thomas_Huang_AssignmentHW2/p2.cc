@@ -86,4 +86,6 @@ int main(int argc, char **argv){
   WriteImage(output_file, one_image);
   return 0;
 }
-// ./p2 outputp1.pgm outputp2.pgm
+/* 
+./p2 outputp1.pgm outputp2.pgm
+*/

@@ -142,7 +142,9 @@ int main(int argc, char **argv){
   return 0;
 }
 
-// ./p3 outputp2.pgm output.txt outputp3.pgm
+/* 
+./p3 outputp2.pgm output.txt outputp3.pgm
+*/
 //0 256.527451 195.367647 363516.096275 2040 0.482194 129.788517
 //1 263.409163 349.568653 3810176.434220 7618 0.521131 18.215075
 //object label, row position of the center , column position of the center , the minimum moment of inertia (i.e. Emin), 
