@@ -45,5 +45,5 @@ int main(int argc, char **argv){
   //image to pgm file
   WriteImage(output_file, one_image);
 }
-// ./p1 images/two_objects.pgm 127 images/outputp1.pgm
+// ./p1 two_objects.pgm 127 outputp1.pgm
 // ./p1 many_objects_1.pgm 123 outputp1.pgm
