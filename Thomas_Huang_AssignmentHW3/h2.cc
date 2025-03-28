@@ -38,9 +38,11 @@ int main(int argc, char **argv){
       }
     }
   }
-    WriteImage(output_file,result);
-    return 0;
+  if(!WriteImage(output_file,result)){
+    std::cout << "cant write image" << std::endl;
+  }
+  return 0;
 }
 /* 
-./h2 outputh1.pgm 50 outputh2.pgm
+./h2 outputh1.pgm 24 outputh2.pgm
 */ 

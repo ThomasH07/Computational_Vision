@@ -66,8 +66,10 @@ int main(int argc, char **argv){
   //     std::cout << result.GetPixel(i,j) << " " ;
   //   }
   // }
-    WriteImage(output_file,result);
-    return 0;
+  if(!WriteImage(output_file,result)){
+    std::cout << "cant write image" << std::endl;
+  }
+  return 0;
 }
 /* 
 ./h1 hough_simple_1.pgm outputh1.pgm

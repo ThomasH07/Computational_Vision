@@ -6,6 +6,7 @@
 #include <string>
 #include <cmath>
 #include <vector>
+#include <fstream>
 using namespace ComputerVisionProjects;
 
 int main(int argc, char **argv){
@@ -34,32 +35,81 @@ int main(int argc, char **argv){
     Image one_image;
     Image* one_ptr = &one_image;
     ReadImage(input_filenm, one_ptr);
-    Image result = one_image;
+    Image result;
 
     int rows = one_image.num_rows();
     int cols = one_image.num_columns();
 
-    double rho =  sqrt(pow(rows,2) + pow(cols,2));
-    double theta = (M_PI); //radians
-    double delta_theta = theta/180; //radians to degree
+    result.SetNumberGrayLevels(one_image.num_gray_levels());
 
 
-    std::cout 
-    << "rho: " << rho 
-    << "\ntheta: " << theta;
+    // rho takes values from 0 to sqrt(M^2 + N^2)
+    double r = sqrt((rows*rows) + (cols*cols));
+    // delta rho - the amount of steps
+    double r_steps = 1;
+    double t_steps = 1;
+    // number of samples (T) for Rho
+    // accounting for negatives
+    int r_bins = round(r / r_steps);
+    // number of samples (R) for Theta
+    int t_bins = round(180/t_steps);
+
+    // accumulator array
+    std::vector<std::vector<int>> accumulator(t_bins, std::vector<int>(r_bins, 0));
+
+    result.AllocateSpaceAndSetSize(t_bins,r_bins);
+    // std::cout << "R: " << r << "\nT: " << t_bins;
+
     // nested for loop on each pixel of the image
-    for (int y = 1; y < rows-1 ;y++){
-        for (int x = 1; x < cols-1 ;x++){
+    for (int y = 0; y < rows ;y++){
+        for (int x = 0; x < cols ;x++){
             if(one_image.GetPixel(y,x) > 0){
-                //for(int h = 0; h < 180;h++){}
-                //find delta rho
-
+                for(int h = 0; h < t_bins;h++){    
+                    // h * pi / 180 = h * delta theta
+                    double theta = (h*t_steps)*(M_PI/180);
+                    // compute rho
+                    double rho = y*cos(theta)+ x*sin(theta);
+                    // finding K
+                    double k = round(rho/r_steps);
+                    // increment accumulator
+                    if (k >= 0 && k < r_bins) {
+                        accumulator[h][k]++;  // Increment accumulator
+                    }
+                }
             }
         }
     }
+    //the output text file, for the accumulator array
+    std::string output;
+    
+    std::ofstream outputfile(output_txt_filenm);
+    if (!outputfile.is_open()){
+        std::cerr << "Can't open file " << std::endl;
+        return 0;
+    }
+    output +=  std::to_string(t_bins) +  '\n';
+    output += std::to_string(r_bins) + '\n';
+    for(int y = 0; y < accumulator.size(); y++){
+        for(int x = 0; x < accumulator[0].size(); x++){
+            output += std::to_string(accumulator[y][x]) + ' ';
+            //std::cout << accumulator[y][x] << " ";
+            if(accumulator[y][x] > 1){
+                result.SetPixel(y,x,accumulator[y][x]); 
+            }
+        }
+        //output += "\n";
+        //std::cout << output;
+    }
+
+    outputfile << output;
+    outputfile.close();
+    if(!WriteImage(output_pgm_filenm,result)){
+        std::cout << "Can't write Image"<< std::endl;
+    }
+    
     return 0;
 }
 /* 
-./h3 outputh2.pgm outputh3.pgm output.txt
+./h3 outputh2.pgm outputh3.pgm outputtexth3.txt
 
 */

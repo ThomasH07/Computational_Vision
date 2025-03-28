@@ -89,7 +89,7 @@ int main(int argc, char **argv){
       objlist[getp].a += x * x;
       objlist[getp].b += x * y;
       objlist[getp].c += y * y;
-
+  
     }
   }
 
@@ -135,8 +135,8 @@ int main(int argc, char **argv){
   }
   outputfile.close();
   if (!WriteImage(output_file, one_image)){
-  std::cout << "Can't write to file " << output_file << std::endl;
-  return 0;
+    std::cout << "Can't write to file " << output_file << std::endl;
+    return 0;
   }
 
   return 0;
